@@ -7,16 +7,15 @@
 <ion-content>
 
 
-  <ion-button routerLink="/alert"
-              expand="block"
-              shape="round">
-    Alert
-  </ion-button>
-  <ion-button routerLink="/action-sheet"
-              expand="block"
-              shape="round">
-    Action Sheet
-  </ion-button>
+  <ion-list>
+    <ion-item *ngFor="let c of componentes"
+              [routerLink]="c.redirectTo"
+              detail>
+      <ion-icon slot="start"
+                [name]="c.icon"></ion-icon>
+      {{c.name}}
+    </ion-item>
+  </ion-list>
 
 
 
