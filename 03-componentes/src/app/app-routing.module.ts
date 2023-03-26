@@ -18,35 +18,39 @@ const routes: Routes = [
   },
   {
     path: 'action-sheet',
-    loadChildren: () => import('./pages/action-sheet/action-sheet.module').then( m => m.ActionSheetPageModule)
+    loadChildren: () => import('./pages/action-sheet/action-sheet.module').then(m => m.ActionSheetPageModule)
   },
   {
     path: 'avatar',
-    loadChildren: () => import('./pages/avatar/avatar.module').then( m => m.AvatarPageModule)
+    loadChildren: () => import('./pages/avatar/avatar.module').then(m => m.AvatarPageModule)
   },
   {
     path: 'button',
-    loadChildren: () => import('./pages/button/button.module').then( m => m.ButtonPageModule)
+    loadChildren: () => import('./pages/button/button.module').then(m => m.ButtonPageModule)
   },
   {
     path: 'card',
-    loadChildren: () => import('./pages/card/card.module').then( m => m.CardPageModule)
+    loadChildren: () => import('./pages/card/card.module').then(m => m.CardPageModule)
   },
   {
     path: 'checkbox',
-    loadChildren: () => import('./pages/checkbox/checkbox.module').then( m => m.CheckboxPageModule)
+    loadChildren: () => import('./pages/checkbox/checkbox.module').then(m => m.CheckboxPageModule)
   },
   {
     path: 'date-time',
-    loadChildren: () => import('./pages/date-time/date-time.module').then( m => m.DateTimePageModule)
+    loadChildren: () => import('./pages/date-time/date-time.module').then(m => m.DateTimePageModule)
   },
   {
     path: 'fab',
-    loadChildren: () => import('./pages/fab/fab.module').then( m => m.FabPageModule)
+    loadChildren: () => import('./pages/fab/fab.module').then(m => m.FabPageModule)
   },
   {
     path: 'grid',
-    loadChildren: () => import('./pages/grid/grid.module').then( m => m.GridPageModule)
+    loadChildren: () => import('./pages/grid/grid.module').then(m => m.GridPageModule)
+  },
+  {
+    path: 'infinite',
+    loadChildren: () => import('./pages/infinite/infinite.module').then(m => m.InfinitePageModule)
   }
 ];
 
