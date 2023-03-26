@@ -25,9 +25,19 @@ export class InicioPage implements OnInit {
       redirectTo: '/alert'
     },
     {
-      icon: 'baker-outline',
+      icon: 'beaker-outline',
       name: 'Avatar',
       redirectTo: '/avatar'
+    },
+    {
+      icon: 'radio-button-off-outline',
+      name: 'Button',
+      redirectTo: '/button'
+    },
+    {
+      icon: 'card-outline',
+      name: 'Cards',
+      redirectTo: '/card'
     },
   ];
   constructor() { }
