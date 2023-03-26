@@ -1,0 +1,29 @@
+<app-header titulo="Progress - Range"></app-header>
+
+<ion-content class="ion-padding">
+  <h3>Progress bar</h3>
+  <ion-progress-bar [value]="progress"
+                    color="primary"></ion-progress-bar>
+
+
+  <ion-list class="ion-margin-top">
+    <ion-item>
+      <ion-range min="0"
+                 max="100"
+                 dualKnobs="true"
+                 pin="true"
+                 snaps="true"
+                 step="1"
+                 ticks="false"
+                 value="0"
+                 color="primary"
+                 (ionChange)="rangeChange($event)">
+        <ion-icon size="small"
+                  slot="start"
+                  name="sunny-outline"></ion-icon>
+        <ion-icon slot="end"
+                  name="sunny"></ion-icon>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+</ion-content>
