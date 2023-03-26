@@ -1,0 +1,38 @@
+<app-header titulo="DateTime"></app-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-list-header>
+      <ion-label>Birth information</ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Date of birth</ion-label>
+      <ion-item>
+        <ion-datetime [value]="dob.toISOString()"
+                      display-format="DD MMMM YYYY"
+                      (ionChange)="changeDate($event)"></ion-datetime>
+      </ion-item>
+    </ion-item>
+
+    <ion-list-header>
+      <ion-label>Restrictions</ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Min & Max</ion-label>
+      <ion-datetime display-format="YYYY"
+                    presentation="month-year"
+                    min="2022"
+                    max="2025"></ion-datetime>
+    </ion-item>
+
+
+
+
+
+  </ion-list>
+
+</ion-content>
