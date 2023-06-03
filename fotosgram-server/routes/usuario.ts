@@ -2,6 +2,8 @@ import { Request, Response, Router } from 'express';
 import { Usuario } from '../models/usuario.model';
 
 import bcrypt from 'bcrypt';
+import Token from '../classes/token';
+import { verifyToken } from '../middlewares/authentication';
 const userRoutes = Router();
 
 // >>> Login
@@ -17,14 +19,21 @@ userRoutes.post('/login', (req: Request, res: Response) => {
         });
       }
       if (userDB.comparePassword(body.password)) {
+        const tokenUser = Token.getJwtToken({
+          _id: userDB._id,
+          name: userDB.name,
+          email: userDB.email,
+          avatar: userDB.avatar,
+        });
+
         res.json({
           ok: true,
-          token: 'asdfjaposdoifja88e88e888888',
+          token: tokenUser,
         });
       } else {
         return res.json({
           ok: false,
-          mensaje: 'Username/password is not correct ***',
+          mensaje: 'Username/password is not correct **',
         });
       }
     })
@@ -44,9 +53,16 @@ userRoutes.post('/create', (req: Request, res: Response) => {
 
   Usuario.create(user)
     .then((userDB) => {
+      const tokenUser = Token.getJwtToken({
+        _id: userDB._id,
+        name: userDB.name,
+        email: userDB.email,
+        avatar: userDB.avatar,
+      });
+
       res.json({
         ok: true,
-        user: userDB,
+        token: tokenUser,
       });
     })
     .catch((err) => {
@@ -55,6 +71,38 @@ userRoutes.post('/create', (req: Request, res: Response) => {
         err,
       });
     });
+});
+
+// Update User
+userRoutes.post('/update', verifyToken, (req: any, res: Response) => {
+  const user = {
+    name: req.body.name || req.user.name,
+    email: req.body.email || req.user.email,
+    avatar: req.body.avatar || req.user.avatar,
+  };
+
+  Usuario.findOneAndUpdate(req.user.id, user, { new: true }).then(
+    (userDB: any) => {
+      if (!userDB) {
+        return res.json({
+          ok: false,
+          mensaje: 'Something is wrong or user doesn´t exist',
+        });
+      }
+
+      const tokenUser = Token.getJwtToken({
+        _id: userDB._id,
+        name: userDB.name,
+        email: userDB.email,
+        avatar: userDB.avatar,
+      });
+
+      res.json({
+        ok: true,
+        token: tokenUser,
+      });
+    }
+  );
 });
 
 export default userRoutes;
