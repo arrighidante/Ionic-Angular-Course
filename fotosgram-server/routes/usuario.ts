@@ -3,11 +3,10 @@ import { Usuario } from '../models/usuario.model';
 
 import bcrypt from 'bcrypt';
 import Token from '../classes/token';
-import { verifyToken } from '../middlewares/authentication';
+import { validateToken } from '../middlewares/authentication';
 const userRoutes = Router();
 
 // >>> Login
-
 userRoutes.post('/login', (req: Request, res: Response) => {
   const body = req.body;
   Usuario.findOne({ email: req.body.email })
@@ -74,7 +73,7 @@ userRoutes.post('/create', (req: Request, res: Response) => {
 });
 
 // Update User
-userRoutes.post('/update', verifyToken, (req: any, res: Response) => {
+userRoutes.post('/update', validateToken, (req: any, res: Response) => {
   const user = {
     name: req.body.name || req.user.name,
     email: req.body.email || req.user.email,
@@ -103,6 +102,16 @@ userRoutes.post('/update', verifyToken, (req: any, res: Response) => {
       });
     }
   );
+});
+
+// Get User
+userRoutes.get('/', [validateToken], (req: any, res: Response) => {
+  const user = req.user;
+
+  res.json({
+    ok: true,
+    user,
+  });
 });
 
 export default userRoutes;
