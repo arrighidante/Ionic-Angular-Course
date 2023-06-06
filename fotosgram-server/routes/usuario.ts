@@ -1,6 +1,5 @@
 import { Request, Response, Router } from 'express';
 import { Usuario } from '../models/usuario.model';
-
 import bcrypt from 'bcrypt';
 import Token from '../classes/token';
 import { validateToken } from '../middlewares/authentication';
